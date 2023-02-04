@@ -25,31 +25,36 @@ namespace wépéjef_applikáció
         {
             InitializeComponent();
         }
-
+        
+        //Színkeverés
         private void SzinKeveres()
         {
             rctSzin.Fill = new SolidColorBrush(Color.FromRgb(Convert.ToByte(sliPiros.Value), Convert.ToByte(sliZold.Value), Convert.ToByte(sliKek.Value)));
                 
         }
 
+        //Piros váltás
         private void sliPiros_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SzinKeveres();
             labPiros.Content = Math.Floor(sliPiros.Value);
         }
 
+        //Zöld váltás
         private void sliZold_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SzinKeveres();
             labZold.Content = Math.Floor(sliZold.Value);
         }
 
+        //Kék váltás
         private void sliKek_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SzinKeveres();
             labKek.Content = Math.Floor(sliKek.Value);
         }
 
+        //Rögzít
         private void btnRogzit_Click(object sender, RoutedEventArgs e)
         {
            double piros = Math.Floor(Convert.ToDouble(sliPiros.Value));
@@ -68,6 +73,7 @@ namespace wépéjef_applikáció
             }
         }
 
+        //Töröl
         private void btnTorol_Click(object sender, RoutedEventArgs e)
         {
             if (lbSzinek.Items.Count <= 0)
@@ -80,12 +86,11 @@ namespace wépéjef_applikáció
             }
             else
             {
-                lbSzinek.Items.Remove(lbSzinek.SelectedItem);
+                lbSzinek.Items.RemoveAt(lbSzinek.SelectedIndex);
             }
-            
         }
 
-
+        //Ürít
         private void btnUrit_Click(object sender, RoutedEventArgs e)
         {
             if (lbSzinek.Items.Count == 0)
@@ -109,6 +114,7 @@ namespace wépéjef_applikáció
             sliKek.Value = Convert.ToByte(RGBCol[2]);
         }*/
 
+        //Átszinez
         private void lbSzinek_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string[] RGBCol = lbSzinek.Items[lbSzinek.SelectedIndex].ToString().Split(';');
@@ -118,6 +124,7 @@ namespace wépéjef_applikáció
             sliKek.Value = Convert.ToByte(RGBCol[2]);
         }
 
+        //Bezár kérdés
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (MessageBox.Show("Biztosan ki akarsz lénpi a programból?", "Színkeverő 0.2", MessageBoxButton.YesNo,
@@ -127,6 +134,7 @@ namespace wépéjef_applikáció
             }
         }
 
+        //Labelbe írás
         private void labPiros_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool valid = false;
@@ -151,7 +159,8 @@ namespace wépéjef_applikáció
                 }
             } while (valid != true);
         }
-
+        
+        //Labelbe írás
         private void labZold_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool valid = false;
@@ -176,7 +185,8 @@ namespace wépéjef_applikáció
                 }
             } while (valid != true);
         }
-
+        
+        //Labelbe írás
         private void labKek_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool valid = false;
@@ -203,5 +213,3 @@ namespace wépéjef_applikáció
         }
     }
 }    
-
-
